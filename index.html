@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+ <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>دیوولی — صعود جادویی</title>
+ <meta name="description" content="سه شعله، یک جایزه و یک صعود دشوار. ماجراجویی عمودی دیوولی.">
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%230c142c'/%3E%3Cpath d='M16 4Q30 21 16 28Q2 21 16 4' fill='%2356ead8'/%3E%3C/svg%3E">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+ <a class="brand" href="./"><span class="brand-mark">D</span><span data-fa="دیوولی" data-en="Divoolee">دیوولی</span><small>MAGIC ASCENT</small></a>
+ <nav aria-label="Navigation"><button class="nav-active" data-panel="game" data-fa="بازی" data-en="Play">بازی</button><button data-panel="rewards" data-fa="جوایز" data-en="Rewards">جوایز</button><button data-panel="story" data-fa="داستان و راهنما" data-en="Story & guide">داستان و راهنما</button></nav>
+ <button id="language" class="language">English ◎</button>
+</header>
+<main>
+ <div class="topline"><div><span class="eyebrow">DIVOOLEE · MAGIC ASCENT</span><h1 data-fa="بالاتر از خیال" data-en="Rise beyond imagination">بالاتر از خیال</h1></div><span class="demo" data-fa="نسخهٔ نمایشی · ۳" data-en="Demo edition · 3">نسخهٔ نمایشی · ۳</span></div>
+ <div class="game-layout">
+  <section class="arena" aria-label="Divoolee Magic Ascent">
+   <div class="scene"></div><canvas id="game" tabindex="0"></canvas>
+   <div class="hud">
+    <div class="score-box"><small data-fa="امتیاز" data-en="SCORE">امتیاز</small><strong id="score">۰</strong><small class="speed-label"><span data-fa="سرعت" data-en="Speed">سرعت</span> <b id="speed">1.1×</b></small></div>
+    <div class="lives-box"><div id="lives" role="img" aria-label="۳ جان باقی مانده"><i></i><i></i><i></i></div><small id="lifeCount">۳ / ۳</small></div>
+    <div class="hud-actions"><button id="sound" aria-label="صدا" aria-pressed="true">♪</button><button id="pause" aria-label="مکث">Ⅱ</button></div>
+   </div>
+   <div class="world"><span id="world">جنگل مهتابی · ۱</span></div>
+   <div id="welcome" class="overlay">
+    <div class="intro"><span class="chapter" data-fa="سه شعله · یک صعود" data-en="THREE FLAMES · ONE ASCENT">سه شعله · یک صعود</span><h2 data-fa="ساده به نظر میاد.<br>تا وقتی بپری!" data-en="Looks easy.<br>Until you jump.">ساده به نظر میاد.<br>تا وقتی بپری!</h2><p data-fa="از سکوها بالا برو، از آتش فرار کن.<br>سه جانت که تمام شد، جایزه‌ات را انتخاب کن." data-en="Climb the platforms. Dodge the fire.<br>Use three lives. Then choose your reward.">از سکوها بالا برو، از آتش فرار کن.<br>سه جانت که تمام شد، جایزه‌ات را انتخاب کن.</p><button id="start" class="primary" data-fa="صعود با دیوولی ✦" data-en="Rise with Divoolee ✦">صعود با دیوولی ✦</button><small data-fa="پرش خودکار · چپ و راست برای هدایت<br>Space یا دکمهٔ جهش برای فرار" data-en="Auto-bounce · Steer left and right<br>Space or Boost to dodge">پرش خودکار · چپ و راست برای هدایت<br>Space یا دکمهٔ جهش برای فرار</small></div>
+    <button id="heroTurn" class="hero-character ready" aria-label="لمس کن تا دیوولی به سمتت بچرخد" aria-pressed="false"><canvas id="heroSprite" width="300" height="400" aria-hidden="true"></canvas><span class="turn-hint" data-fa="لمسم کن ↻" data-en="Tap to turn ↻">لمسم کن ↻</span></button>
+   </div>
+   <div id="power" class="power"></div><div id="toast" role="status" aria-live="polite"></div>
+   <button id="claimShortcut" hidden data-fa="انتخاب یک جایزه ✦" data-en="Choose one reward ✦">انتخاب یک جایزه ✦</button>
+   <button id="homeAgain" class="primary" hidden data-fa="دوباره از اول ↻" data-en="Start again ↻">دوباره از اول ↻</button>
+   <div class="touch-controls"><button id="left" aria-label="Move left">←</button><button id="jump">جهش ↑</button><button id="right" aria-label="Move right">→</button></div>
+  </section>
+  <aside>
+   <section class="progress-card"><div class="card-heading"><span data-fa="جوایز پایان صعود" data-en="Rewards after the ascent">جوایز پایان صعود</span><span>✧</span></div><p class="muted" data-fa="رکورد این دستگاه · فقط برای نمایش" data-en="Device record · display only">رکورد این دستگاه · فقط برای نمایش</p><div class="best"><strong id="best">۰</strong><small data-fa="امتیاز" data-en="points">امتیاز</small></div><div class="progress-track"><i id="progress"></i></div><p id="nextReward" class="next"></p><div id="rewardList"></div><button class="text-button" data-panel="rewards" data-fa="مسیر جایزه‌ها و شرایط ←" data-en="Reward trail & rules →">مسیر جایزه‌ها و شرایط ←</button></section>
+   <section class="magic-card"><span class="eyebrow" data-fa="آسان شروع کن. سخت ادامه بده." data-en="EASY TO START. HARD TO MASTER.">آسان شروع کن. سخت ادامه بده.</span><h3 data-fa="جهش را به‌موقع بزن" data-en="Time your boost"></h3><p data-fa="سرعت تا ۳٫۶ برابر می‌شود. جهش کمکی هر ۲٫۶ ثانیه شارژ می‌شود. نور نارنجی یعنی گوی آتش نزدیک است." data-en="Speed rises to 3.6×. Boost recharges every 2.6 seconds. An orange warning means fire is coming."></p><div class="powers"><span>◈</span><span>✦</span><span>◷</span></div><p data-fa="سپر · آهن‌ربای شعله · زمان آهسته" data-en="Shield · Spark magnet · Slow time"></p><button id="music" class="text-button" aria-pressed="true">موسیقی: روشن</button></section>
+  </aside>
+ </div>
+ <footer><span data-fa="پس از پایان سه جان، یک جایزهٔ نمایشی انتخاب کن." data-en="Use all three lives, then choose one demo campaign reward.">پس از پایان سه جان، یک جایزهٔ نمایشی انتخاب کن.</span><span>DIVOOLEE © 2026</span></footer>
+</main>
+<dialog id="dialog"><button id="close" class="close" aria-label="Close">×</button><div id="dialogBody"></div></dialog>
+<script src="engine.js"></script><script src="rewards.js"></script><script src="audio.js"></script><script src="turntable.js"></script><script src="game.js"></script>
+</body></html>
